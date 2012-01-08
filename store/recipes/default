@@ -3,3 +3,5 @@ policy: {"read": [], "create": [], "manage": ["R:ADMIN"], "accept": [], "write":
 
 /bags/system/tiddlers
 /bags/common/tiddlers
+/bags/tinwhiskers/tiddlers
+/bags/beer/tiddlers
