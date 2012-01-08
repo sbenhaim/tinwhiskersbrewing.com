@@ -2,7 +2,7 @@ modifier: None
 created: 
 modified: 20120108152357
 type: None
-tags: systemConfig
+tags: excludeLists excludeSearch systemConfig
 version.extensions.BrowserHistoryPlugin= {major: 0, minor: 1, revision: 1, date: new Date(2012, 1, 7)};
 
 config.paramifiers.BHP = { onstart: function(v) {
