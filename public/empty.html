@@ -664,7 +664,7 @@ config.macros = {
 config.commands = {
 	closeTiddler: {},
 	closeOthers: {},
-	editTiddler: {},
+	editTiddler: {hideReadOnly: true},
 	saveTiddler: {hideReadOnly: true},
 	cancelTiddler: {},
 	deleteTiddler: {hideReadOnly: true},
@@ -1173,8 +1173,9 @@ merge(config.commands.closeOthers,{
 merge(config.commands.editTiddler,{
 	text: "edit",
 	tooltip: "Edit this tiddler",
-	readOnlyText: "view",
-	readOnlyTooltip: "View the source of this tiddler"});
+	// readOnlyText: "view",
+	// readOnlyTooltip: "View the source of this tiddler"
+});
 
 merge(config.commands.saveTiddler,{
 	text: "done",
@@ -3271,6 +3272,7 @@ config.macros.toolbar.createCommand = function(place,commandName,tiddler,classNa
 		commandName = c;
 	}
 	if((tiddler instanceof Tiddler) && (typeof commandName == "string")) {
+		if ( commandName == 'editTiddler' && tiddler.isReadOnly( ) ) return;
 		var command = config.commands[commandName];
 		if(command.isEnabled ? command.isEnabled(tiddler) : this.isCommandEnabled(command,tiddler)) {
 			var text = command.getText ? command.getText(tiddler) : this.getCommandText(command,tiddler);
