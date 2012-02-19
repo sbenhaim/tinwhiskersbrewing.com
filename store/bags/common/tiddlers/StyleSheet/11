@@ -1,0 +1,11 @@
+modifier: selah
+created: 20120122224219
+modified: 20120122225147
+type: None
+tags: 
+
+.header {background:white;}
+.headerShadow {color:[[ColorPalette::Foreground]];}
+.headerShadow a {font-weight:normal; color:[[ColorPalette::Foreground]];}
+.headerForeground {color:[[ColorPalette::Background]];}
+.headerForeground a {font-weight:normal; color:[[ColorPalette::PrimaryPale]];}

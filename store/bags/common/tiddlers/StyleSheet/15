@@ -1,0 +1,11 @@
+modifier: selah
+created: 20120122224219
+modified: 20120122231522
+type: None
+tags: 
+
+.header {
+background:white;
+border-bottom: 2px solid #746b61;
+}
+

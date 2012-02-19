@@ -1,1 +1,0 @@
-{"read": [], "create": ["ANY"], "manage": ["R:ADMIN"], "accept": ["ANY"], "write": ["ANY"], "owner": null, "delete": ["ANY"]}
