@@ -1,8 +1,0 @@
-modifier: selah
-created: 20120205174207
-modified: 20120205174554
-type: None
-tags: 
-
-|~ViewToolbar|+editTiddler|
-|~EditToolbar|+saveTiddler -cancelTiddler deleteTiddler|

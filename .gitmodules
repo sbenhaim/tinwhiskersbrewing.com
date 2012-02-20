@@ -1,0 +1,6 @@
+[submodule "src/cooker"]
+	path = src/cooker
+	url = git@github.com:sbenhaim/cooker.git
+[submodule "src/tiddlywiki"]
+	path = src/tiddlywiki
+	url = git@github.com:sbenhaim/tiddlywiki.git
