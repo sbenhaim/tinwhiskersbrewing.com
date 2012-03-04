@@ -1,0 +1,30 @@
+modifier: funkyeah
+created: 
+modified: 20120224043827
+type: None
+tags: 
+
+HeaderBackground: #222 /* GK - added */
+HeaderBorder: #333          /* Gk - added */
+
+Background: #FFF /* tiddler display background */
+MenuAccent:#CCC
+MenuLight: #CCC
+LinkHoverBackground: transparent /* moving away from */
+MenuMid: #444
+MenuDark: #222
+Foreground: #220615        /*really dark purple */
+PrimaryPale: #fefafc       /* off white */
+PrimaryLight: #EEE
+PrimaryMid: #2A5DB0        /*mid blue */ /* link color*/
+PrimaryDark: #333
+SecondaryPale: #fafdfe    /* off white*/
+SecondaryLight: #A6A59E   /* mid grey */
+SecondaryMid:  #BF2323     /* red */ /* missing link color */
+SecondaryDark: #4a5153    /* darker grey */
+TertiaryPale: #fbfefa     /*background to edit tiddler*/
+TertiaryLight: #EEE       /* really light grey*/ /* tag background */
+TertiaryMid: #A6A59E      /* tiddler subtitle */
+TertiaryDark: #4d534a     /* dark green */
+Error: #f88
+ColorPaletteParameters: HSL([328|47], [0.67|0.53|0.43|0.06],[0.31|0.5|0.85|0.99])

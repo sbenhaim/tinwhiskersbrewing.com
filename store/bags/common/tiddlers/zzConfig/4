@@ -1,0 +1,9 @@
+modifier: funkyeah
+created: 
+modified: 20120227173047
+type: None
+tags: systemConfig
+
+config.options.chkAnimate = false
+config.options.chkBrowserHistoryMode = true
+config.options.txtTheme  = "TestTheme";
