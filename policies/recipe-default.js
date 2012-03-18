@@ -4,5 +4,5 @@ policy: {"read": [], "create": ["R:ADMIN"], "manage": ["R:ADMIN"], "accept": ["R
 /bags/system/tiddlers
 /bags/common/tiddlers
 /bags/script/tiddlers
-/bags/beer/tiddlers
 /bags/tinwhiskers/tiddlers
+/bags/beer/tiddlers

@@ -1,5 +1,11 @@
+modifier: selah
+created: 
+modified: 20120317234105
+type: None
+tags: 
+
 <html>
-	<form action="javascript:jQuery.post( '/challenge/cookie_form', { user: this.user.value, password: this.password.value }, function(t,d) { location.reload( true ); } );">
+	<form id="login-form">
 		<label for="user">Username</label><br/>
 		<input type="text" id="user" name="user"/><br/>
 		<label for="password">Password</password><br/>
@@ -7,3 +13,4 @@
 		<input type="submit" value="Go!"/>
 	</form>
 </html>
+

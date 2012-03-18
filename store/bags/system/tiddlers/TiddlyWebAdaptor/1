@@ -315,6 +315,7 @@ adaptor.prototype.putTiddler = function(tiddler, context, userParams, callback) 
 		}
 	});
 	payload = $.toJSON(payload);
+	console.log( uri );
 	var req = httpReq("PUT", uri, adaptor.putTiddlerCallback,
 		context, headers, payload, adaptor.mimeType, null, null, true);
 	return typeof req == "string" ? req : true;

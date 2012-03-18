@@ -1,1 +1,1 @@
-{"read": ["NONE"], "create": ["NONE"], "manage": ["NONE"], "accept": ["NONE"], "write": ["NONE"], "owner": "administrator", "delete": ["NONE"]}
+{"read": ["NONE"], "create": ["NONE"], "manage": ["R:ADMIN"], "accept": ["R:ADMIN"], "write": ["NONE"], "owner": "administrator", "delete": ["NONE"]}

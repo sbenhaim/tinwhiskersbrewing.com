@@ -44,6 +44,7 @@ var plugin = config.extensions.tiddlyweb = {
 		this.getStatus(function(status) {
 			callback({
 				name: plugin.username,
+				role: plugin.role,
 				anon: plugin.username ? plugin.username == "GUEST" : true
 			});
 		});
@@ -115,12 +116,21 @@ var getStatus = function(callback) {
 			self.queue = callback ? [callback] : [];
 			var _callback = function(context, userParams) {
 				var status = context.serverStatus || {};
+
+				if ( status['username'] != 'GUEST' ) {
+					jQuery('body').attr('id', status['role'] ? status['role'] : "ANY" );
+				}
+				else {
+					jQuery('body').attr('id', 'GUEST');
+				}
+				
 				for(var key in status) {
 					if(key == "username") {
 						plugin.username = status[key];
 						config.macros.option.propagateOption("txtUserName",
 							"value", plugin.username, "input");
-					} else {
+					}
+					else {
 						plugin.status[key] = status[key];
 					}
 				}

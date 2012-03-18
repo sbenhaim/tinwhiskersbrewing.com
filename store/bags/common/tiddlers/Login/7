@@ -1,0 +1,15 @@
+modifier: selah
+created: 
+modified: 20120318000037
+type: None
+tags: 
+
+<html>
+	<form>
+		<label for="user">Username</label><br/>
+		<input type="text" id="user" name="user"/><br/>
+		<label for="password">Password</password><br/>
+		<input type="password" id="password" name="password"/></br>
+		<input type="submit" value="Go!" onclick="LogInOutPlugin.attemptLogin( this );"/>
+	</form>
+</html>

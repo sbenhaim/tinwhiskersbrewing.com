@@ -1,0 +1,22 @@
+modifier: selah
+created: 
+modified: 20120318191956
+type: None
+tags: 
+
+#sidebar {
+display: none;
+}
+
+#ADMIN #sidebar {
+display: block;
+}
+
+.header {
+background:white;
+border-bottom: 2px dashed #746b61;
+}
+
+.headerShadow {
+padding-top: 4.7 em;
+}
