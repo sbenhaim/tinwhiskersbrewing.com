@@ -4,3 +4,4 @@ tiddlywebconfig.py
 tinwhiskersbrewing.pyc
 .project_index
 sqldumps
+*.pyc

@@ -1,7 +1,0 @@
-modifier: selah
-created: 20120204183053
-modified: 20120204183053
-type: None
-tags: systemConfig
-
-config.options.chkBrowserHistoryMode = true;

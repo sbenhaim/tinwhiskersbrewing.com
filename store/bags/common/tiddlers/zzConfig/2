@@ -1,9 +1,0 @@
-modifier: selah
-created: 20120204183053
-modified: 20120204183610
-type: None
-tags: systemConfig
-
-config.options.chkAnimate = false
-config.options.chkBrowserHistoryMode = true
-

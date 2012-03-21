@@ -2,6 +2,7 @@ import logging
 import simplejson
 import tiddlyweb
 import tiddlywebplugins.status
+from tiddlyweb.web.validator import TIDDLER_VALIDATORS
 
 def init( config ):
     register_url( config['selector'], '/status', tw_status )
