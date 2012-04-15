@@ -121,8 +121,8 @@ Story.prototype.displayTiddler = function( srcElement, tiddler, template, animat
 		var isTopTiddler=( tiddlerElem.previousSibling==null );
 		if ( !isTopTiddler && ( single || top ) )
 			tiddlerElem.parentNode.insertBefore( tiddlerElem, tiddlerElem.parentNode.firstChild );
-		else if ( bottom )
-			tiddlerElem.parentNode.insertBefore( tiddlerElem, null );
+		// else if ( bottom )
+		// 	tiddlerElem.parentNode.insertBefore( tiddlerElem, null );
 		else this.BHP_coreDisplayTiddler.apply( this, arguments ); // let CORE render tiddler
 	} else {
 		this.BHP_coreDisplayTiddler.apply( this, arguments ); // let CORE render tiddler

@@ -1,13 +1,12 @@
 /***
-|Name|IntraTiddlerNavPlugin|
-|Source|https://github.com/sbenhaim/Tin-Whiskers-TiddlyWiki-Client-Plugin-Dev/blob/master/BrowserHistoryPlugin.js|
+|Name|LogInOutPlugin|
 |Documentation|todo|
 |Version|0.1.1|
 |Author|Selah Ben-Haim|
 |License|todo|
 |~CoreVersion|todo|
 |Type|plugin|
-|Description|Dynamically create a nav of headline tags within a tiddler on load.|
+|Description|Log in, and out!|
 
 !!!!!Documentation
 >see [[todo]]
