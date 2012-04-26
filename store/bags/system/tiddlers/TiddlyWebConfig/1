@@ -45,7 +45,8 @@ var plugin = config.extensions.tiddlyweb = {
 			callback({
 				name: plugin.username,
 				role: plugin.role,
-				anon: plugin.username ? plugin.username == "GUEST" : true
+				anon: plugin.username ? plugin.username == "GUEST" : true,
+				bags: plugin.bags
 			});
 		});
 	},
@@ -115,7 +116,7 @@ var getStatus = function(callback) {
 			self.pending = true;
 			self.queue = callback ? [callback] : [];
 			var _callback = function(context, userParams) {
-				var status = context.serverStatus || {};
+				var status = window.serverStatus = context.serverStatus || {};
 
 				if ( status['username'] != 'GUEST' ) {
 					jQuery('body').attr('id', status['role'] ? status['role'] : "ANY" );
