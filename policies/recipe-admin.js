@@ -5,4 +5,5 @@ policy: {"read": ["R:ADMIN"], "create": ["R:ADMIN"], "manage": ["R:ADMIN"], "acc
 /bags/script/tiddlers
 /bags/tinwhiskers/tiddlers
 /bags/beer/tiddlers
+/bags/private/tiddlers
 /bags/common/tiddlers
