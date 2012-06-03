@@ -53,7 +53,8 @@
 		}
 	}
 
-	function prepareImageUpload ( ) {
+	window.MarkitupPlugin  =  {};
+	var prepareImageUpload = window.MarkitupPlugin.prepareImageUpload = function( ) {
 		var $form = $("<form action='javascript:void(0);'>");
 		var $file = $('<input type="file" name="file"/>');
 		$file.css( { position: 'absolute',

@@ -6,7 +6,7 @@
 |License|todo|
 |~CoreVersion|todo|
 |Type|plugin|
-|Requires|ejs|
+|Requires|MarkitupPlugin|
 |Description|Log in, and out!|
 
 !!!!!Documentation
@@ -27,46 +27,50 @@
 	var display = Story.prototype.displayTiddler;
 	var editDisplay;
 	var viewDisplay;
-	var firstTime = true;
 
 	Story.prototype.displayTiddler = function( srcElement, tiddler, template, animate, slowly ) {
+
+		display.apply( this, arguments );
 
 		var title = ( tiddler instanceof Tiddler )?tiddler.title:tiddler;
 		var t = store.getTiddler( title );
 
-		var identifier  =  title.abbr( ) + "-edit-button";
+		var identifier  =  title.abbr( ) + "-create-button";
 		var modified  =  $("#" + identifier );
 
-		if ( modified.length === 0 && t instanceof Tiddler && t.tags.contains( "formTiddler" ) ) {
-			var data = DataTiddler.getDataObject( t );
-			var tt = store.getTiddlerText( "BeerRecipeTemplate" );
-
-			var temp = new EJS( {"text": tt } );
-			editDisplay = t.text;
-			t.text = temp.render( {"data": data} );
-
-			display.apply( this, arguments );
-			story.refreshTiddler( title, template, true );
-
-			store.setDirty( false );
-
+		if ( modified.length === 0 && t instanceof Tiddler && t.tags.contains( "systemForm" ) ) {
 			$el = $('div.viewer');
 
-			var input = $( document.createElement( 'input' ) );
-			input.attr( { "type": "button", "value": "edit", "id": identifier } );
-			input.click( (function( self, args ) {
-				return function( ) { editForm.apply( self, args ); };
-			})( this, arguments ) );
+			processForm( $el );
 
-			$el.append( input );
-		}
-		else {
-			display.apply( this, arguments );
-		}
+			var button = $( "<input/>" );
+			button.attr( { "type": "button", "value": "create", "id": identifier } );
+			button.click( function( evt ) {
+				create( $el, title );
+			} );
 
-		firstTime = false;
+			$el.append( "<br/>" );
+			$el.append( button );
+		}
 	}
 
+
+	function processForm( $el ) {
+
+		$el.find("select[foreach='tiddler']").each( function( i, el ) {
+			var tags = $(el).attr( "tagged-with" );
+			store.forEachTiddler( function(title,tiddler) {
+				if ( tiddler.tags.contains( tags ) ) {
+					$(el).append( $("<option/>").attr( {"value":title} ).html( title ) );
+				}
+			});
+		});
+
+		$el.find( 'textarea' ).markItUp( mySettings );
+		window.MarkitupPlugin.prepareImageUpload( );
+
+		createPlusButtons( $el );
+	}
 
 
 	function createPlusButtons( $el ) {
@@ -92,55 +96,107 @@
 		}
 	}
 
-	function editForm ( srcElement, tiddler, template, animate, slowly ) {
+	// function editWithForm( srcElement, tiddler, template, animate, slowly ) {
 
-		var title = ( tiddler instanceof Tiddler ) ? tiddler.title : tiddler;
-		var t = store.getTiddler( title );
-		var formDisplay  =  t.text;
-		t.text = editDisplay;
-		story.refreshTiddler( title, template, true );
+	// 	var title = ( tiddler instanceof Tiddler ) ? tiddler.title : tiddler;
+	// 	var t = store.getTiddler( title );
+	// 	var formDisplay  =  t.text;
+	// 	t.text = editDisplay;
+	// 	story.refreshTiddler( title, template, true );
 
-		var identifier  =  title.abbr( ) + "-save-button";
-		var input = $( document.createElement( 'input' ) );
-		input.attr( { "type": "button", "value": "save", "id": identifier } );
+	// 	var identifier  =  title.abbr( ) + "-save-button";
+	// 	var input = $( document.createElement( 'input' ) );
+	// 	input.attr( { "type": "button", "value": "save", "id": identifier } );
 
-		input.click( ( function( self, t, args ) {
-			return function( ) {
-				story.saveTiddler( tiddler );
-				story.displayTiddler.apply( self, args );
-			};
-		})( this, t, arguments ) );
+	// 	input.click( ( function( self, t, args ) {
+	// 		return function( ) {
+	// 			story.saveTiddler( tiddler );
+	// 			story.displayTiddler.apply( self, args );
+	// 		};
+	// 	})( this, t, arguments ) );
 
 
-		$el  =  $('div.viewer');
+	// 	$el  =  $('div.viewer');
 
-		$el.append( input );
-		createPlusButtons( $el );
-	}
+	// 	$el.append( input );
+	// 	createPlusButtons( $el );
+	// }
 
 	String.prototype.abbr = function( ) {
 		return this.replace( /\s/g, '_' ).replace( /[^\w]/g, '' );
 	}
 
-	window.newRecipeTiddler = function( recipeForm, recipeTemplate, tags ) {
-		if(!readOnly) {
+	function create( $el, formName ) {
+		if( !readOnly ) {
 
-			tiddlerName = prompt("Please specify a title.", "");
+			var data = $el.find( "form" ).serializeJSON();
+			var tiddlerName = data.name;
 
-			while (tiddlerName && store.getTiddler(tiddlerName)) {
-				tiddlerName = prompt("A tiddler named '"+tiddlerName+"' already exists.\n\n"+"Please specify a different title.", tiddlerName);
+			if ( ! tiddlerName ) {
+				window.alert("Please select a name.");
+				return;
 			}
 
-			// tiddlerName is either null (user canceled) or a name that is not yet in the store.
-			if (tiddlerName) {
-				var body = "<<formTiddler [["+recipeForm+"]]>>";
-				if ( ! tags ) tags = [];
-				tags.push( "formTiddler" );
-				store.saveTiddler(tiddlerName,tiddlerName,body,config.options.txtUserName,new Date(),tags,{ "recipeTemplate": recipeTemplate });
-				story.displayTiddler(null,tiddlerName,1);
+			if ( tiddlerName && store.getTiddler(tiddlerName) ) {
+				window.alert("A tiddler named '"+tiddlerName+"' already exists.\n\n"+"Please specify a different name.");
+				return;
 			}
+
+			var templateName = $el.find( "form" ).attr( "template" );
+			var tt = store.getTiddlerText( templateName );
+
+			if ( ! tt ) {
+				console.log( "Rendering template " + templateName + " not found for form tiddler." );
+				return;
+			}
+
+			var temp = new EJS( {"text": tt} );
+			var body = temp.render( {"data": data} );
+			body += "\n\n<data>" + JSON.stringify( data ) + "</data>";
+
+			var tags = [];
+			if ( data.tags ) {
+				if ( data.tags instanceof Array ) {
+					tags = data.tags;
+				}
+				else {
+					tags.push( data.tags );
+				}
+			}
+			tags.push( "FormSpring" );
+
+			store.saveTiddler(tiddlerName,tiddlerName,body,config.options.txtUserName,new Date(),tags,{ "createdByForm": formName });
+			story.displayTiddler(null,tiddlerName,1);
 		}
 	}
+
+	$.fn.serializeJSON = function() {
+		var arrayData, objectData;
+		arrayData = this.serializeArray();
+		objectData = {};
+
+		$.each(arrayData, function() {
+			var value;
+
+			if (this.value != null) {
+				value = this.value;
+			} else {
+				value = '';
+			}
+
+			if (objectData[this.name] != null) {
+				if (!objectData[this.name].push) {
+					objectData[this.name] = [objectData[this.name]];
+				}
+
+				objectData[this.name].push(value);
+			} else {
+				objectData[this.name] = value;
+			}
+		});
+
+		return objectData;
+	};
 
 })(jQuery);
 
