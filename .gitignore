@@ -5,3 +5,6 @@ tinwhiskersbrewing.pyc
 .project_index
 sqldumps
 *.pyc
+/images/*
+/store/bags/common
+/tags

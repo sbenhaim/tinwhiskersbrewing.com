@@ -53,6 +53,14 @@
 		$form.append( $file ).append( $submit );
 		$(place).append( $form );
 	}
+
+	$('div.markItUpHeader > ul').on('load', 'li.markItUpButton.image', function( evt ) {
+		console.log( "evt: ", evt );
+	});
+
+	$('li.markItUpButton.image').on('load', function( evt ) {
+		console.log( "evt: ", evt );
+	});
 	
 })(jQuery);
 

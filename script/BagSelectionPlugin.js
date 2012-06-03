@@ -62,6 +62,12 @@
 		if ( ! data ) data = data;
 		var bags = data.bags;
 
+		// Only show dropdown if there are actually bags to choose
+		// from
+		if ( bags.length < 2 ) {
+			return;
+		}
+
 		var title = ( tiddler instanceof Tiddler )?tiddler.title:tiddler;
 		var t = store.getTiddler( title );
 		var identifier  =  title.abbr( ) + "bag-select";
