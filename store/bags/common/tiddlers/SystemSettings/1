@@ -1,9 +1,0 @@
-modifier: selah
-created: 
-modified: 20120321025159
-type: None
-tags: 
-
-config.options.chkAnimate = false
-config.options.chkBrowserHistoryMode = true
-config.options.txtTheme  = "TWTheme"
