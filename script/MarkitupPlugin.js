@@ -63,20 +63,26 @@
 					 height: "16px",
 					 opacity: 0 });
 
+		function ddComplete ( e, r ) {
+			complete( r.result );
+		}
+
+		function complete ( d ) {
+			if ( d.ok ) {
+				$.markItUp({ openWith: "[img[" + d.image_path + "]]" } );
+			}
+			else {
+				window.alert( d.message );
+			}
+		}
+
 		$form.submit(function() {
 			$.ajax('/images', {
 				type: "POST",
 				files: $(":file", this),
 				iframe: true,
 				dataType: "json",
-				success: function( d ) {
-					if ( d.ok ) {
-						$.markItUp({ openWith: "[img[" + d.image_path + "]]" } );
-					}
-					else {
-						window.alert( d.message );
-					}
-				},
+				success: complete
 			});
 		});
 
@@ -89,6 +95,16 @@
 		$li.append( '<img src="/public/markitup/sets/wiki/images/picture.png" alt="Insert Image"/>' );
 		$li.append( $form );
 		$li.unbind( 'click' );
+
+
+		// Drag and drop support
+		$('.editor textarea').fileupload({
+			dataType: 'json',
+			url: '/images',
+			paramName: 'file',
+			type: 'POST',
+			done: ddComplete
+		});
 	}
 
 	function twPreview ( ) {

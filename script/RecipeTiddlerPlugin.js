@@ -1,5 +1,5 @@
 /***
-|Name|TiddlerFormPlugin|
+|Name|RecipeTiddlerPlugin|
 |Documentation|todo|
 |Version|0.1.1|
 |Author|Selah Ben-Haim|
@@ -7,7 +7,7 @@
 |~CoreVersion|todo|
 |Type|plugin|
 |Requires|MarkitupPlugin|
-|Description|Log in, and out!|
+|Description|Recipe forms for creating tiddler|
 
 !!!!!Documentation
 >see [[todo]]
@@ -163,7 +163,7 @@
 					tags.push( data.tags );
 				}
 			}
-			tags.push( "FormSpring" );
+			tags.push( "systemFormCreated" );
 
 			store.saveTiddler(tiddlerName,tiddlerName,body,config.options.txtUserName,new Date(),tags,{ "createdByForm": formName });
 			story.displayTiddler(null,tiddlerName,1);
